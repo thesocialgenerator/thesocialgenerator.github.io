@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ryan Nungay — Marketing Automation Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#2563EB;
+    --blue-dark:#1D4ED8;
+    --cyan:#06B6D4;
+    --ink:#0F172A;
+    --slate:#475569;
+    --slate-light:#94A3B8;
+    --bg:#FFFFFF;
+    --surface:#F8FAFC;
+    --surface-2:#F1F5F9;
+    --border:#E2E8F0;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:10px;
+    --shadow-sm: 0 1px 2px rgba(15,23,42,0.06);
+    --shadow-md: 0 8px 24px rgba(15,23,42,0.08);
+    --shadow-lg: 0 20px 50px rgba(15,23,42,0.10);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', -apple-system, sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  img,svg{display:block;}
+  .container{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  section{position:relative;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk'; font-weight:700; font-size:18px;
+  }
+  .logo-mark{
+    width:32px;height:32px;border-radius:9px;
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    position:relative;
+  }
+  .logo-mark::after{
+    content:"";
+    position:absolute; inset:9px;
+    border-radius:3px;
+    background:#fff;
+    opacity:0.9;
+  }
+  .nav-links{
+    display:flex; gap:32px; align-items:center;
+  }
+  .nav-links a{
+    font-size:14.5px; font-weight:500; color:var(--slate);
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--blue);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-weight:600; font-size:14.5px;
+    padding:11px 22px; border-radius:100px;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    cursor:pointer; border:none;
+  }
+  .btn-primary{
+    background:var(--blue); color:#fff;
+    box-shadow:0 1px 2px rgba(37,99,235,0.15);
+  }
+  .btn-primary:hover{background:var(--blue-dark); transform:translateY(-1px); box-shadow:0 8px 20px rgba(37,99,235,0.28);}
+  .btn-ghost{
+    background:transparent; color:var(--ink);
+    border:1.5px solid var(--border);
+  }
+  .btn-ghost:hover{border-color:var(--blue); color:var(--blue);}
+  .btn:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  .nav-cta{display:flex; align-items:center; gap:14px;}
+  .nav-cta .btn-primary{padding:10px 20px; font-size:14px;}
+  .menu-toggle{display:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:110px 32px 60px;
+    background:
+      radial-gradient(700px 400px at 85% -10%, rgba(6,182,212,0.10), transparent),
+      radial-gradient(600px 400px at 5% 0%, rgba(37,99,235,0.08), transparent);
+  }
+  .hero-inner{
+    max-width:1180px; margin:0 auto;
+    text-align:center;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono'; font-size:12.5px; font-weight:500;
+    color:var(--blue); background:#EFF6FF;
+    border:1px solid #DBEAFE;
+    padding:7px 14px; border-radius:100px;
+    margin-bottom:26px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%; background:var(--cyan); box-shadow:0 0 0 3px rgba(6,182,212,0.25);}
+  .hero h1{
+    font-size:clamp(34px, 5.2vw, 62px);
+    line-height:1.08;
+    max-width:920px;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(100deg, var(--blue), var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.sub{
+    margin-top:22px;
+    font-size:18px; color:var(--slate);
+    max-width:640px;
+  }
+  .hero-ctas{
+    margin-top:36px;
+    display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+  }
+  .hero-ctas .btn{padding:14px 28px; font-size:15px;}
+
+  /* floating tool badges */
+  .float-field{
+    position:relative;
+    width:100%; max-width:920px;
+    height:150px;
+    margin-top:56px;
+  }
+  .float-card{
+    position:absolute;
+    display:flex; align-items:center; gap:8px;
+    background:#fff; border:1px solid var(--border);
+    box-shadow:var(--shadow-md);
+    border-radius:var(--radius-sm);
+    padding:11px 16px;
+    font-size:13.5px; font-weight:600;
+    animation:floaty 6s ease-in-out infinite;
+  }
+  .float-card .sw{width:9px;height:9px;border-radius:3px;}
+  @keyframes floaty{
+    0%,100%{transform:translateY(0px);}
+    50%{transform:translateY(-12px);}
+  }
+  .fc1{left:2%; top:10%; animation-delay:0s;}
+  .fc2{left:20%; top:60%; animation-delay:.8s;}
+  .fc3{left:42%; top:5%; animation-delay:1.6s;}
+  .fc4{left:58%; top:64%; animation-delay:.4s;}
+  .fc5{left:78%; top:15%; animation-delay:1.2s;}
+  .fc6{left:84%; top:66%; animation-delay:2s;}
+  @media (max-width:760px){
+    .float-field{display:none;}
+  }
+
+  /* signature: workflow chain */
+  .chain{
+    margin-top:60px;
+    width:100%; max-width:980px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:0; flex-wrap:wrap;
+  }
+  .chain-node{
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    min-width:100px;
+  }
+  .chain-node .icn{
+    width:52px;height:52px; border-radius:14px;
+    background:var(--surface); border:1.5px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; z-index:2;
+    transition:border-color .3s, box-shadow .3s;
+  }
+  .chain-node .icn svg{stroke:var(--blue);}
+  .chain-node span{font-size:12.5px; font-weight:600; color:var(--slate); font-family:'IBM Plex Mono';}
+  .chain-line{
+    flex:1; height:2px; min-width:24px;
+    background-image:linear-gradient(90deg, var(--blue) 0 6px, transparent 6px 12px);
+    background-size:12px 2px;
+    background-repeat:repeat-x;
+    position:relative; top:-19px;
+    animation:dashmove 1.2s linear infinite;
+  }
+  @keyframes dashmove{ to{background-position:-24px 0;} }
+  @media (max-width:760px){
+    .chain{display:none;}
+  }
+
+  /* ---------- Section shells ---------- */
+  .section{padding:104px 0;}
+  .section-alt{background:var(--surface);}
+  .section-head{
+    max-width:640px; margin-bottom:56px;
+  }
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .section-tag{
+    font-family:'IBM Plex Mono'; font-size:12.5px; font-weight:600;
+    color:var(--cyan); text-transform:uppercase; letter-spacing:0.08em;
+    margin-bottom:14px; display:block;
+  }
+  .section-head h2{font-size:clamp(26px,3.2vw,38px); line-height:1.2;}
+  .section-head p{margin-top:14px; color:var(--slate); font-size:16.5px;}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:start;
+  }
+  .about-copy p{color:var(--slate); font-size:16px; margin-bottom:16px;}
+  .about-copy p strong{color:var(--ink);}
+  .about-list{
+    margin-top:28px; display:grid; grid-template-columns:1fr 1fr; gap:14px 20px;
+  }
+  .about-list li{
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:14.5px; color:var(--ink); font-weight:500;
+  }
+  .check{
+    width:18px;height:18px; border-radius:50%; background:#ECFEFF;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;
+  }
+  .about-industries{
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:28px; box-shadow:var(--shadow-sm);
+  }
+  .about-industries h4{font-size:15px; margin-bottom:16px; color:var(--slate); text-transform:uppercase; letter-spacing:.06em; font-family:'IBM Plex Mono'; font-weight:600;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:9px;}
+  .chip{
+    font-size:13px; font-weight:600; padding:8px 14px;
+    border-radius:100px; background:var(--surface-2); color:var(--slate);
+    border:1px solid var(--border);
+  }
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;}
+    .about-list{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  .skill-card{
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:28px; transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .skill-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:#CBD5E1;}
+  .skill-card .icn{
+    width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+  }
+  .skill-card h3{font-size:17px; margin-bottom:12px;}
+  .skill-card ul{display:flex; flex-direction:column; gap:8px;}
+  .skill-card li{
+    font-size:14px; color:var(--slate); font-family:'IBM Plex Mono'; font-weight:500;
+    display:flex; align-items:center; gap:8px;
+  }
+  .skill-card li::before{content:""; width:5px;height:5px;border-radius:50%; background:var(--cyan); flex-shrink:0;}
+  @media (max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:600px){.skills-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Case studies ---------- */
+  .case{
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:40px; margin-bottom:28px;
+    box-shadow:var(--shadow-sm);
+    transition:box-shadow .25s ease;
+  }
+  .case:hover{box-shadow:var(--shadow-lg);}
+  .case-top{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:22px;}
+  .case-num{
+    font-family:'IBM Plex Mono'; font-size:13px; color:var(--slate-light); font-weight:600;
+  }
+  .case h3{font-size:22px; margin-top:6px;}
+  .case-tools{display:flex; gap:8px; flex-wrap:wrap;}
+  .case-body{display:grid; grid-template-columns:1fr 1fr; gap:36px; margin-bottom:26px;}
+  .case-col h5{
+    font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--blue);
+    font-family:'IBM Plex Mono'; font-weight:600; margin-bottom:10px;
+  }
+  .case-col p{color:var(--slate); font-size:14.5px; margin-bottom:10px;}
+  .case-col ul{display:flex; flex-direction:column; gap:8px;}
+  .case-col ul li{font-size:14.5px; color:var(--ink); display:flex; gap:8px;}
+  .case-col ul li::before{content:"→"; color:var(--cyan); font-weight:700; flex-shrink:0;}
+  .flow{
+    display:flex; align-items:center; flex-wrap:wrap; gap:0;
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
+    padding:20px 22px;
+  }
+  .flow-step{
+    font-family:'IBM Plex Mono'; font-size:12.5px; font-weight:600;
+    background:#fff; border:1px solid var(--border); border-radius:100px;
+    padding:8px 14px; color:var(--ink); white-space:nowrap;
+  }
+  .flow-arrow{color:var(--slate-light); margin:0 10px; font-size:14px;}
+  @media (max-width:760px){
+    .case{padding:26px;}
+    .case-body{grid-template-columns:1fr; gap:20px;}
+    .flow{padding:16px;}
+  }
+
+  /* ---------- Services ---------- */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  .service-card{
+    border-radius:var(--radius-lg); padding:30px;
+    background:var(--surface); border:1px solid var(--border);
+    transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .service-card:hover{background:#fff; box-shadow:var(--shadow-lg); transform:translateY(-3px);}
+  .service-card h3{font-size:18px; margin-bottom:14px;}
+  .service-card ul li{font-size:14.5px; color:var(--slate); margin-bottom:8px; padding-left:16px; position:relative;}
+  .service-card ul li::before{content:"·"; position:absolute; left:0; color:var(--blue); font-weight:900;}
+  @media (max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:600px){.services-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Industries ---------- */
+  .industries-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  }
+  .industry-card{
+    text-align:center; padding:26px 14px;
+    border:1px solid var(--border); border-radius:var(--radius-md);
+    background:#fff;
+    transition:border-color .2s, transform .2s;
+  }
+  .industry-card:hover{border-color:var(--blue); transform:translateY(-3px);}
+  .industry-card .icn{
+    width:40px;height:40px; margin:0 auto 12px;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:10px; background:#EFF6FF;
+  }
+  .industry-card span{font-size:14px; font-weight:600;}
+  @media (max-width:860px){.industries-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- Process ---------- */
+  .process-track{
+    display:flex; align-items:flex-start; overflow-x:auto; gap:0;
+    padding-bottom:10px;
+  }
+  .process-step{
+    min-width:150px; flex:1;
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    position:relative; padding:0 6px;
+  }
+  .process-step .num{
+    font-family:'IBM Plex Mono'; font-weight:700; font-size:14px;
+    width:38px;height:38px; border-radius:50%;
+    background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:14px; position:relative; z-index:2;
+  }
+  .process-step.active .num{background:linear-gradient(135deg,var(--blue),var(--cyan));}
+  .process-step h4{font-size:14.5px; margin-bottom:6px;}
+  .process-step p{font-size:12.5px; color:var(--slate-light);}
+  .process-connector{
+    position:absolute; top:19px; left:50%; width:100%; height:2px; background:var(--border); z-index:1;
+  }
+  .process-step:last-child .process-connector{display:none;}
+  @media (max-width:760px){
+    .process-track{justify-content:flex-start;}
+    .process-step{min-width:120px;}
+  }
+
+  /* ---------- Why ---------- */
+  .why-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
+  }
+  .why-item{
+    display:flex; align-items:center; gap:14px;
+    padding:18px 22px; border:1px solid var(--border); border-radius:var(--radius-md);
+    background:#fff;
+  }
+  .why-item .check{background:#ECFEFF; width:26px;height:26px;}
+  .why-item span{font-size:15px; font-weight:600;}
+  @media (max-width:760px){.why-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .testi-card{
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:28px; display:flex; flex-direction:column; gap:18px;
+  }
+  .testi-card .quote-mark{font-family:'Space Grotesk'; font-size:34px; color:var(--cyan); line-height:1;}
+  .testi-card p.quote{font-size:15px; color:var(--slate);}
+  .testi-person{display:flex; align-items:center; gap:12px; margin-top:auto;}
+  .testi-avatar{
+    width:40px;height:40px;border-radius:50%;
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:700; font-size:14px; font-family:'Space Grotesk';
+  }
+  .testi-name{font-size:14px; font-weight:700;}
+  .testi-role{font-size:12.5px; color:var(--slate-light);}
+  @media (max-width:900px){.testi-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Contact ---------- */
+  .contact-wrap{
+    background:linear-gradient(135deg, var(--ink) 0%, #16213E 100%);
+    border-radius:28px; padding:64px 48px;
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .contact-wrap::before{
+    content:"";
+    position:absolute; width:500px;height:500px; border-radius:50%;
+    background:radial-gradient(circle, rgba(6,182,212,0.25), transparent 70%);
+    top:-200px; right:-150px;
+  }
+  .contact-wrap h2{color:#fff; font-size:clamp(26px,3.6vw,42px); position:relative;}
+  .contact-wrap p{color:#CBD5E1; margin-top:14px; font-size:16px; position:relative; max-width:520px; margin-left:auto; margin-right:auto;}
+  .contact-ctas{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:32px; position:relative;}
+  .contact-ctas .btn-ghost{border-color:rgba(255,255,255,0.25); color:#fff;}
+  .contact-ctas .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan);}
+  .contact-links{
+    display:flex; justify-content:center; gap:22px; margin-top:40px; position:relative;
+  }
+  .contact-links a{font-size:13.5px; font-weight:600; color:#94A3B8; transition:color .2s;}
+  .contact-links a:hover{color:#fff;}
+
+  footer{
+    padding:36px 32px; text-align:center;
+    font-size:13px; color:var(--slate-light);
+  }
+
+  /* fade-in on scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+    .about-industries{margin-top:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo"><div class="logo-mark"></div>Ryan Nungay</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Case Studies</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#contact">Schedule a call</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow"><span class="dot"></span>MARKETING AUTOMATION &amp; CRM SYSTEMS</span>
+    <h1>Marketing automation that turns <span class="grad">leads into customers</span></h1>
+    <p class="sub">I design and build the automated systems behind email, CRM, and messaging so your business follows up faster, sells more consistently, and runs with less manual work.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#contact">Schedule a Discovery Call</a>
+      <a class="btn btn-ghost" href="#work">View My Work</a>
+    </div>
+
+    <div class="float-field" aria-hidden="true">
+      <div class="float-card fc1"><span class="sw" style="background:#2563EB"></span>ActiveCampaign</div>
+      <div class="float-card fc2"><span class="sw" style="background:#06B6D4"></span>Klaviyo</div>
+      <div class="float-card fc3"><span class="sw" style="background:#1D4ED8"></span>ManyChat</div>
+      <div class="float-card fc4"><span class="sw" style="background:#F97316"></span>Zapier</div>
+      <div class="float-card fc5"><span class="sw" style="background:#16A34A"></span>Shopify</div>
+      <div class="float-card fc6"><span class="sw" style="background:#0EA5E9"></span>WordPress</div>
+    </div>
+
+    <div class="chain" aria-hidden="true">
+      <div class="chain-node"><div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5"/></svg></div><span>LEAD</span></div>
+      <div class="chain-line"></div>
+      <div class="chain-node"><div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg></div><span>NURTURE</span></div>
+      <div class="chain-line"></div>
+      <div class="chain-node"><div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div><span>CRM</span></div>
+      <div class="chain-line"></div>
+      <div class="chain-node"><div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg></div><span>PIPELINE</span></div>
+      <div class="chain-line"></div>
+      <div class="chain-node"><div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></div><span>CUSTOMER</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <span class="section-tag">About</span>
+        <h2 style="margin-bottom:20px; font-size:clamp(24px,3vw,32px);">Systems-minded, five years into building the automation behind growing businesses</h2>
+        <p>I'm a marketing automation specialist and project manager with over five years spent inside the tools that run modern customer journeys: email platforms, CRMs, and messaging automation. My background includes time at an Australian digital marketing agency, where I built and maintained automation for clients across e-commerce, finance, coaching, and real estate.</p>
+        <p>Today I focus on <strong>lifecycle email automation, CRM workflow design, and connecting the platforms businesses already use</strong> so leads get followed up on time, deals move through a real pipeline, and the team isn't stitching things together by hand.</p>
+        <p>I care about the parts most people skip: clean tagging, accurate segmentation, and automations that keep working after launch instead of quietly breaking.</p>
+        <ul class="about-list">
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Email &amp; SMS automation</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>CRM system design</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Lead generation funnels</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Customer journey mapping</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>AI-assisted workflows</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Cross-platform integrations</li>
+        </ul>
+      </div>
+      <div class="about-industries reveal">
+        <h4>Industries served</h4>
+        <div class="chip-row">
+          <span class="chip">Healthcare</span>
+          <span class="chip">E-commerce</span>
+          <span class="chip">Finance</span>
+          <span class="chip">Coaching</span>
+          <span class="chip">Real Estate</span>
+          <span class="chip">Agencies</span>
+          <span class="chip">Course Creators</span>
+          <span class="chip">Service Businesses</span>
+        </div>
+        <h4 style="margin-top:26px;">Core platforms</h4>
+        <div class="chip-row">
+          <span class="chip">ActiveCampaign</span>
+          <span class="chip">Klaviyo</span>
+          <span class="chip">MailerLite</span>
+          <span class="chip">ManyChat</span>
+          <span class="chip">Zapier</span>
+          <span class="chip">WordPress</span>
+          <span class="chip">ClickFunnels</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="skills">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="section-tag">Skills</span>
+      <h2>The stack I build with</h2>
+      <p>A working toolkit across email, CRM, messaging, integrations, and AI, chosen for what actually gets used in day-to-day operations.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+        <h3>Email Marketing</h3>
+        <ul><li>ActiveCampaign</li><li>Klaviyo</li><li>MailerLite</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+        <h3>CRM</h3>
+        <ul><li>ActiveCampaign</li><li>Cerbo (MD-HQ)</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg></div>
+        <h3>Automation</h3>
+        <ul><li>Zapier</li><li>APIs &amp; Webhooks</li><li>WordPress</li><li>Shopify</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5A8.38 8.38 0 0 1 3 11.5a8.5 8.5 0 0 1 9-8.48 8.48 8.48 0 0 1 9 8.48Z"/><path d="M8 12h8M12 8v8"/></svg></div>
+        <h3>ManyChat</h3>
+        <ul><li>Instagram automation</li><li>Messenger automation</li><li>Comment-to-DM</li><li>Booking funnels</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>AI Automation</h3>
+        <ul><li>ChatGPT</li><li>Claude</li><li>Prompt engineering</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></div>
+        <h3>Project Management</h3>
+        <ul><li>Cross-functional teams</li><li>Rollout planning</li><li>Documentation</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">Case Studies</span>
+      <h2>Systems built, start to finish</h2>
+      <p>A look at how the automation actually works underneath, from the first customer touchpoint to the follow-up after the sale.</p>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div><span class="case-num">01 / ActiveCampaign</span><h3>Lifecycle Automation From Lead to Sale</h3></div>
+        <div class="case-tools"><span class="chip">ActiveCampaign</span><span class="chip">Zapier</span><span class="chip">WordPress</span></div>
+      </div>
+      <div class="case-body">
+        <div class="case-col">
+          <h5>Challenge</h5>
+          <p>A client needed one automated journey covering the full path from first form fill to closed deal, instead of separate tools that didn't talk to each other.</p>
+          <h5>Impact</h5>
+          <ul><li>New leads get a response within minutes instead of hours</li><li>Sales reps work from a pipeline that reflects what's actually happening</li><li>Manual tagging and list cleanup is no longer a weekly chore</li></ul>
+        </div>
+        <div class="case-col">
+          <h5>What I built</h5>
+          <ul><li>Welcome series and lead nurture sequences</li><li>Sales automation triggers</li><li>Deal pipeline with stage-based follow-up</li><li>Segmentation and tag management</li></ul>
+        </div>
+      </div>
+      <div class="flow">
+        <span class="flow-step">Lead</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Email Sequence</span><span class="flow-arrow">→</span>
+        <span class="flow-step">CRM</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Deal Pipeline</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Sale</span>
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div><span class="case-num">02 / ManyChat</span><h3>Instagram DM Automation</h3></div>
+        <div class="case-tools"><span class="chip">ManyChat</span><span class="chip">ActiveCampaign</span><span class="chip">Zapier</span></div>
+      </div>
+      <div class="case-body">
+        <div class="case-col">
+          <h5>Challenge</h5>
+          <p>Comments and DMs on Instagram were going unanswered, and there was no path from social engagement into the CRM or a booked appointment.</p>
+          <h5>Impact</h5>
+          <ul><li>Comments turn into captured leads automatically</li><li>Appointment booking happens without a human relaying messages</li><li>Every contact syncs into the CRM with the right tags</li></ul>
+        </div>
+        <div class="case-col">
+          <h5>What I built</h5>
+          <ul><li>Comment-to-DM automation</li><li>Email capture inside Messenger</li><li>CRM sync and appointment booking</li><li>FAQ automation and review requests</li></ul>
+        </div>
+      </div>
+      <div class="flow">
+        <span class="flow-step">IG Comment</span><span class="flow-arrow">→</span>
+        <span class="flow-step">ManyChat</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Email Capture</span><span class="flow-arrow">→</span>
+        <span class="flow-step">CRM</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Appointment</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Follow-up</span>
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div><span class="case-num">03 / Healthcare</span><h3>GLP-1 Clinic Automation</h3></div>
+        <div class="case-tools"><span class="chip">ActiveCampaign</span><span class="chip">ManyChat</span><span class="chip">Cerbo</span></div>
+      </div>
+      <div class="case-body">
+        <div class="case-col">
+          <h5>Challenge</h5>
+          <p>A functional medicine clinic needed patients educated, booked, and followed up with automatically, without adding to front-desk workload.</p>
+          <h5>Impact</h5>
+          <ul><li>Patients get consistent education content without staff involvement</li><li>Booking funnel handles scheduling end to end</li><li>Reviews and follow-ups go out on a set schedule</li></ul>
+        </div>
+        <div class="case-col">
+          <h5>What I built</h5>
+          <ul><li>Patient education and FAQ automation</li><li>Booking funnel and follow-up sequences</li><li>Review automation and lead magnet delivery</li><li>Supporting video scripts, social content, and DM campaigns</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div><span class="case-num">04 / E-commerce</span><h3>Shopify + Klaviyo Flows</h3></div>
+        <div class="case-tools"><span class="chip">Shopify</span><span class="chip">Klaviyo</span></div>
+      </div>
+      <div class="case-body">
+        <div class="case-col">
+          <h5>Challenge</h5>
+          <p>An online store was relying on one-off campaigns with no structured flows to recover carts, win back lapsed customers, or reward repeat buyers.</p>
+          <h5>Impact</h5>
+          <ul><li>Abandoned carts and browse sessions get followed up automatically</li><li>Lapsed customers are re-engaged on a schedule</li><li>VIP customers are recognized instead of treated like every other subscriber</li></ul>
+        </div>
+        <div class="case-col">
+          <h5>What I built</h5>
+          <ul><li>Welcome flow and post-purchase series</li><li>Cart recovery and browse abandonment</li><li>Win-back and VIP campaigns</li><li>Ongoing A/B testing and segmentation</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div><span class="case-num">05 / Integrations</span><h3>CRM &amp; Finance Stack Integration</h3></div>
+        <div class="case-tools"><span class="chip">Stripe</span><span class="chip">Zapier</span><span class="chip">ActiveCampaign</span><span class="chip">Asana</span></div>
+      </div>
+      <div class="case-body">
+        <div class="case-col">
+          <h5>Challenge</h5>
+          <p>Payments, CRM records, and project handoffs lived in separate tools, so someone had to manually move information between them after every transaction.</p>
+          <h5>Impact</h5>
+          <ul><li>A payment automatically creates the CRM record and follow-up sequence</li><li>Project tasks get created without anyone re-typing details</li><li>Nothing falls through the cracks between finance and delivery</li></ul>
+        </div>
+        <div class="case-col">
+          <h5>What I built</h5>
+          <ul><li>Stripe-to-CRM automation</li><li>Task creation in Asana on purchase</li><li>Email automation and customer follow-up</li><li>Additional integrations across WordPress, Fillout, and custom APIs</li></ul>
+        </div>
+      </div>
+      <div class="flow">
+        <span class="flow-step">Stripe</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Zapier</span><span class="flow-arrow">→</span>
+        <span class="flow-step">ActiveCampaign</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Asana</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Follow-up</span>
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div><span class="case-num">06 / Lead Gen</span><h3>Social Media Lead Generation</h3></div>
+        <div class="case-tools"><span class="chip">ManyChat</span><span class="chip">ActiveCampaign</span></div>
+      </div>
+      <div class="case-body">
+        <div class="case-col">
+          <h5>Challenge</h5>
+          <p>A content-driven business had strong reach but no system connecting a comment on a video to an actual booked call.</p>
+          <h5>Impact</h5>
+          <ul><li>A single comment keyword can now trigger the entire journey</li><li>Leads move from social platform to CRM without manual entry</li><li>Sales follow-up starts automatically after the lead magnet is delivered</li></ul>
+        </div>
+        <div class="case-col">
+          <h5>What I built</h5>
+          <ul><li>Keyword-triggered ManyChat automation</li><li>Lead magnet delivery and email capture</li><li>CRM handoff and sales sequence</li></ul>
+        </div>
+      </div>
+      <div class="flow">
+        <span class="flow-step">Reel</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Comment Keyword</span><span class="flow-arrow">→</span>
+        <span class="flow-step">ManyChat</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Lead Magnet</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Email</span><span class="flow-arrow">→</span>
+        <span class="flow-step">CRM</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Booked Call</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="services">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="section-tag">Services</span>
+      <h2>How I can help</h2>
+      <p>Work with me on a single automation, a full CRM buildout, or an ongoing role managing the system after launch.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <h3>Email Marketing</h3>
+        <ul><li>Lifecycle automation</li><li>Campaign management</li><li>Segmentation</li><li>Deliverability</li><li>A/B testing</li></ul>
+      </div>
+      <div class="service-card reveal">
+        <h3>CRM Automation</h3>
+        <ul><li>ActiveCampaign setup</li><li>Sales pipelines</li><li>Lead routing</li></ul>
+      </div>
+      <div class="service-card reveal">
+        <h3>ManyChat</h3>
+        <ul><li>Instagram automation</li><li>Messenger automation</li><li>Lead qualification</li><li>Booking funnels</li></ul>
+      </div>
+      <div class="service-card reveal">
+        <h3>AI Automation</h3>
+        <ul><li>ChatGPT &amp; Claude workflows</li><li>Content systems</li><li>Prompt-driven processes</li></ul>
+      </div>
+      <div class="service-card reveal">
+        <h3>Integrations</h3>
+        <ul><li>Zapier &amp; APIs</li><li>Shopify &amp; WordPress</li><li>CRM connections</li></ul>
+      </div>
+      <div class="service-card reveal">
+        <h3>Project Management</h3>
+        <ul><li>Rollout planning</li><li>Cross-team coordination</li><li>Documentation &amp; handoff</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="industries">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="section-tag">Industries</span>
+      <h2>Who I typically work with</h2>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-card reveal"><div class="icn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M19 14c1.5-1.5 3-3.5 3-6a5 5 0 0 0-9-3 5 5 0 0 0-9 3c0 2.5 1.5 4.5 3 6l6 6 6-6Z"/></svg></div><span>Healthcare</span></div>
+      <div class="industry-card reveal"><div class="icn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div><span>E-commerce</span></div>
+      <div class="industry-card reveal"><div class="icn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2H10a2 2 0 0 0-2 2v16"/></svg></div><span>Finance</span></div>
+      <div class="industry-card reveal"><div class="icn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div><span>Coaching</span></div>
+      <div class="industry-card reveal"><div class="icn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v11h14V9"/></svg></div><span>Real Estate</span></div>
+      <div class="industry-card reveal"><div class="icn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M2 21c0-4 3-7 7-7s7 3 7 7"/><path d="M16 3.5c2 .5 3.5 2.3 3.5 4.5S18 11.5 16 12"/><path d="M17 14c2.5.5 5 2.5 5 6"/></svg></div><span>Agencies</span></div>
+      <div class="industry-card reveal"><div class="icn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div><span>Course Creators</span></div>
+      <div class="industry-card reveal"><div class="icn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg></div><span>Service Businesses</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="process">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="section-tag">Process</span>
+      <h2>How a project moves from idea to running system</h2>
+    </div>
+    <div class="process-track reveal">
+      <div class="process-step active"><div class="process-connector"></div><div class="num">1</div><h4>Discover</h4><p>Understand goals</p></div>
+      <div class="process-step"><div class="process-connector"></div><div class="num">2</div><h4>Audit</h4><p>Review current setup</p></div>
+      <div class="process-step"><div class="process-connector"></div><div class="num">3</div><h4>Strategy</h4><p>Map the journey</p></div>
+      <div class="process-step"><div class="process-connector"></div><div class="num">4</div><h4>Build</h4><p>Set up automations</p></div>
+      <div class="process-step"><div class="process-connector"></div><div class="num">5</div><h4>Test</h4><p>Check every path</p></div>
+      <div class="process-step"><div class="process-connector"></div><div class="num">6</div><h4>Launch</h4><p>Go live</p></div>
+      <div class="process-step"><div class="process-connector"></div><div class="num">7</div><h4>Optimize</h4><p>Refine performance</p></div>
+      <div class="process-step"><div class="num">8</div><h4>Scale</h4><p>Grow what works</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="section-tag">Why work with me</span>
+      <h2>What you get on the project</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span><span>5+ years of marketing automation experience</span></div>
+      <div class="why-item reveal"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span><span>Email lifecycle expert</span></div>
+      <div class="why-item reveal"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span><span>ManyChat specialist</span></div>
+      <div class="why-item reveal"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span><span>CRM automation built around ActiveCampaign</span></div>
+      <div class="why-item reveal"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span><span>AI workflow builder</span></div>
+      <div class="why-item reveal"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span><span>Zapier integration expert</span></div>
+      <div class="why-item reveal"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span><span>Project management experience</span></div>
+      <div class="why-item reveal"><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span><span>Comfortable working across teams</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="testimonials">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="section-tag">Testimonials</span>
+      <h2>What it's like to work together</h2>
+      <p>Placeholder quotes below, ready to be swapped for real client feedback.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <span class="quote-mark">"</span>
+        <p class="quote">Ryan mapped our entire lead process and built it out in ActiveCampaign without us having to explain everything twice. Follow-up finally happens on time.</p>
+        <div class="testi-person"><div class="testi-avatar">JM</div><div><div class="testi-name">J. Martinez</div><div class="testi-role">E-commerce Founder</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <span class="quote-mark">"</span>
+        <p class="quote">The ManyChat setup changed how we handle Instagram. Comments turn into booked calls now instead of sitting unanswered.</p>
+        <div class="testi-person"><div class="testi-avatar">SK</div><div><div class="testi-name">S. Kim</div><div class="testi-role">Clinic Owner</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <span class="quote-mark">"</span>
+        <p class="quote">He's methodical about the details that actually matter, tagging, segmentation, testing every path before launch. Nothing broke after go-live.</p>
+        <div class="testi-person"><div class="testi-avatar">AR</div><div><div class="testi-name">A. Reyes</div><div class="testi-role">Agency Director</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <h2>Let's build your automation system</h2>
+      <p>Tell me about the process you're trying to fix or build, and I'll walk you through what it would take.</p>
+      <div class="contact-ctas">
+        <a class="btn btn-primary" href="https://calendly.com/" target="_blank" rel="noopener">Schedule a Call</a>
+        <a class="btn btn-ghost" href="mailto:hello@ryannungay.com">Email Me</a>
+        <a class="btn btn-ghost" href="#">Download Resume</a>
+      </div>
+      <div class="contact-links">
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">Upwork</a>
+        <a href="#" target="_blank" rel="noopener">Resume</a>
+        <a href="mailto:hello@ryannungay.com">Email</a>
+        <a href="https://calendly.com/" target="_blank" rel="noopener">Calendly</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Ryan Nungay. Built for automation-minded businesses.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
